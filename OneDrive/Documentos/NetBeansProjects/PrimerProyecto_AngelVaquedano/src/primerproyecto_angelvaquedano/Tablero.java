@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Tablero extends JFrame {
+public final class  Tablero extends JFrame {
 
     private JButton[][] botones = new JButton[10][9];
     private Piezas[][] piezas = new Piezas[10][9];
@@ -16,13 +16,15 @@ public class Tablero extends JFrame {
     private JLabel turnoLabel=new JLabel();
     private int logIndex = 0;
     private String turnoJugador;
+    private SistemaJugadores jugadorLog;
     
-
     Jugador jC = new Jugador();
     SistemaJugadores sJ = new SistemaJugadores();
     MenuPrincipal mP = new MenuPrincipal();
 
     public Tablero() {
+        
+        
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

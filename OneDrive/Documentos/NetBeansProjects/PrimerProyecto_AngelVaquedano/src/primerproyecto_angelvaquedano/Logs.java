@@ -5,13 +5,16 @@
 package primerproyecto_angelvaquedano;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author angel
  */
 public class Logs extends javax.swing.JFrame {
-SistemaJugadores sJ=new SistemaJugadores();
+
+    SistemaJugadores sJ = new SistemaJugadores();
+
     /**
      * Creates new form Logds
      */
@@ -100,7 +103,7 @@ SistemaJugadores sJ=new SistemaJugadores();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        MenuPrincipal mP=new MenuPrincipal();
+        MenuPrincipal mP = new MenuPrincipal();
         mP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -153,12 +156,13 @@ SistemaJugadores sJ=new SistemaJugadores();
 
     public void imprimirLogs(String[] logs) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
-        for (String log : logs) {
-            if (log != null) {
-                listModel.addElement(log); 
+        if (logs != null) {
+            for (String log : logs) {
+                if (log != null) {
+                    listModel.addElement(log);
+                }
             }
+            jList1.setModel(listModel);
         }
-        jList1.setModel(listModel); 
     }
-
 }

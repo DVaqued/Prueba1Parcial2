@@ -205,9 +205,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
+        if(sJ.getLogs()!=null){
         Logs l = new Logs();
         l.setVisible(true);
         this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null,"Necesita tener al menos una partida jugada.");
+        }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
