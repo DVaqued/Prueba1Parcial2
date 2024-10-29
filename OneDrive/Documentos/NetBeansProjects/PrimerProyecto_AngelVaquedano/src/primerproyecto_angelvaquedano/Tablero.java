@@ -13,7 +13,10 @@ public class Tablero extends JFrame {
     private int selectedRow = -1;
     private int selectedCol = -1;
     private boolean turno = true; // turno Rojo true, turno Negro false
+    private JLabel turnoLabel=new JLabel();
     private int logIndex = 0;
+    private String turnoJugador;
+    
 
     Jugador jC = new Jugador();
     SistemaJugadores sJ = new SistemaJugadores();
@@ -24,6 +27,8 @@ public class Tablero extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panelTablero = new JPanel(new GridLayout(10, 9));
+        turnoLabel = new JLabel("Turno: " + sJ.getJugador1().getUsername()  , SwingConstants.CENTER);
+        turnoLabel.setFont(new Font("Arial", Font.BOLD, 16));
         inicializarPiezas();
 
         for (int i = 0; i < 10; i++) {
@@ -51,21 +56,23 @@ public class Tablero extends JFrame {
                 if (turno) {
                     JOptionPane.showMessageDialog(null, "Jugador Rojo se ha rendido. Jugador Negro gana.");
                     agregarLog(sJ.getJugador2(), sJ.getJugador1());
-                    sJ.asignarPuntos(sJ.getJugador2(),3);
+                    sJ.asignarPuntos(sJ.getJugador2(), 3);
                     sJ.asignarJugador1(null);
                     sJ.asignarJugador2(null);
                 } else {
                     JOptionPane.showMessageDialog(null, "Jugador Negro se ha rendido. Jugador Rojo gana.");
                     agregarLog(sJ.getJugador1(), sJ.getJugador2());
-                    sJ.asignarPuntos(sJ.getJugador1(),3);
+                    sJ.asignarPuntos(sJ.getJugador1(), 3);
                     sJ.asignarJugador1(null);
                     sJ.asignarJugador2(null);
-
                 }
+                Tablero.this.dispose();
                 mP.setVisible(true);
             }
         });
+
         this.dispose();
+        add(turnoLabel, BorderLayout.NORTH);
         add(panelTablero, BorderLayout.CENTER);
         add(botonRendirse, BorderLayout.SOUTH);
 
@@ -73,7 +80,7 @@ public class Tablero extends JFrame {
     }
 
     private void inicializarPiezas() {
-        piezas[0][0] = new Torre(0, 0, false);
+ piezas[0][0] = new Torre(0, 0, false);
         piezas[0][1] = new Caballo(0, 1, false);
         piezas[0][2] = new Elefante(0, 2, false);
         piezas[0][3] = new Consejero(0, 3, false);
@@ -105,8 +112,7 @@ public class Tablero extends JFrame {
         piezas[6][2] = new Peon(6, 2, true);
         piezas[6][4] = new Peon(6, 4, true);
         piezas[6][6] = new Peon(6, 6, true);
-        piezas[6][8] = new Peon(6, 8, true);
-    }
+        piezas[6][8] = new Peon(6, 8, true);    }
 
     private void setIconFromPieza(int i, int j) {
         if (piezas[i][j] != null) {
@@ -167,12 +173,6 @@ public class Tablero extends JFrame {
                     button.setIcon(selectedButton.getIcon());
                     selectedButton.setIcon(null);
 
-                    if (piezaDestino == null) {
-                        System.out.println("Movimiento realizado a [" + row + "][" + col + "]");
-                    } else {
-                        System.out.println("Captura realizada en [" + row + "][" + col + "]");
-                    }
-
                     if (turno) {
                         if (!reyEnTablero(false)) {
                             JOptionPane.showMessageDialog(null, "JUGADOR " + sJ.getJugador1().getUsername() + " VENCIO A JUGADOR " + sJ.getJugador2().getUsername() + ", FELICIDADES HAS GANADO 3 PUNTOS");
@@ -180,9 +180,11 @@ public class Tablero extends JFrame {
                             agregarLog(sJ.getJugador1(), sJ.getJugador2());
                             sJ.asignarJugador1(null);
                             sJ.asignarJugador2(null);
+                            mP.setVisible(true);
                             this.dispose();
                         }
                         turno = false;
+                        cambiarTurno();
                     } else {
                         if (!reyEnTablero(true)) {
                             JOptionPane.showMessageDialog(null, "JUGADOR " + sJ.getJugador2().getUsername() + " VENCIO A JUGADOR " + sJ.getJugador1().getUsername() + ", FELICIDADES HAS GANADO 3 PUNTOS");
@@ -190,10 +192,11 @@ public class Tablero extends JFrame {
                             agregarLog(sJ.getJugador2(), sJ.getJugador1());
                             sJ.asignarJugador1(null);
                             sJ.asignarJugador2(null);
-
+                            mP.setVisible(true);
                             this.dispose();
                         }
                         turno = true;
+                        cambiarTurno();
                     }
                 } else {
                     System.out.println("Movimiento inválido.");
@@ -211,6 +214,16 @@ public class Tablero extends JFrame {
         if (jC.getLogs() != null && logIndex < jC.getLogs().length) {
             jC.getLogs()[logIndex] = "El jugador " + ganador.getUsername() + " ha vencido a " + perdedor.getUsername() + ".";
             logIndex++;
+        }
+    }
+
+    public void cambiarTurno() {
+        if (turno) {
+            turnoJugador = sJ.getJugador1().getUsername();
+            turnoLabel.setText("Turno: " + turnoJugador);
+        } else {
+            turnoJugador = sJ.getJugador2().getUsername();
+            turnoLabel.setText("Turno: " + turnoJugador);
         }
     }
 

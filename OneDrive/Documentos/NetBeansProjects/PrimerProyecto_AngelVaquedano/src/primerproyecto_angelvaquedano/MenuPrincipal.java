@@ -194,7 +194,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
             System.out.println("Cantidad de jugadores: " + sJ.getTamañoArray());
 
-        if (sJ.getTamañoArray()>=1) {
+        if (sJ.getTamañoArray()>1) {
             SeleccionOponente sO = new SeleccionOponente(); 
             sO.setVisible(true);
             this.dispose();
@@ -242,6 +242,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

@@ -90,7 +90,7 @@
               <Color blue="24" green="57" red="89" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Seleccionar  Oponente:"/>
+            <Property name="text" type="java.lang.String" value="Ranking:"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">

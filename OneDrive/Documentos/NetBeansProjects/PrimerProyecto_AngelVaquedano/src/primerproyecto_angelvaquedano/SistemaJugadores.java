@@ -18,25 +18,28 @@ public class SistemaJugadores extends Jugador {
     }
 
     public boolean agregarUsuario(String username, String contraseña) {
-        return agregarUsuarioRecursivo(username, contraseña);
+        return agregarUsuario(username, contraseña);
     }
 
-    private boolean agregarUsuarioRecursivo(String username, String contraseña) {
-        if (buscarJugador(username) != null) {
+    public boolean agregarUsuario(String username, String contraseña, int index) {
+        if (index >= listaJugadores.size()) {
+            if (contraseña.length() == 5) {
+                Jugador nuevoJugador = new Jugador(username, contraseña);
+                listaJugadores.add(nuevoJugador);
+                usuarioSesion = nuevoJugador;
+                JOptionPane.showMessageDialog(null, "El usuario se ha registrado correctamente.");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "La contraseña debe contener exactamente 5 caracteres.");
+                return false;
+            }
+        }
+        if (listaJugadores.get(index).getUsername().equals(username)) {
             JOptionPane.showMessageDialog(null, "El usuario ingresado ya existe, por favor ingrese otro usuario.");
             return false;
         }
+        return agregarUsuario(username, contraseña, index + 1);
 
-        if (contraseña.length() != 5) {
-            JOptionPane.showMessageDialog(null, "La contraseña debe contener exactamente 5 caracteres.");
-            return false;
-        }
-
-        Jugador j = new Jugador(username, contraseña);
-        listaJugadores.add(j);
-        JOptionPane.showMessageDialog(null, "El usuario se ha registrado correctamente.");
-        usuarioSesion = j;
-        return true;
     }
 
     public Jugador buscarJugador(String username) {
@@ -130,18 +133,20 @@ public class SistemaJugadores extends Jugador {
         }
 
         for (Jugador jugador : listaJugadores) {
+            int puntosJugador = jugador.getPuntos();
             for (int i = 0; i < topJugadores.length; i++) {
-                if (topJugadores[i].isEmpty() || jugador.getPuntos() > puntosTop[i]) {
+                if (topJugadores[i].isEmpty() || puntosJugador > puntosTop[i]) {
                     for (int j = topJugadores.length - 1; j > i; j--) {
                         topJugadores[j] = topJugadores[j - 1];
                         puntosTop[j] = puntosTop[j - 1];
                     }
-                    topJugadores[i] = jugador.getUsername();
-                    puntosTop[i] = jugador.getPuntos();
+                    topJugadores[i] = jugador.getUsername() + " - " + puntosJugador + " puntos";
+                    puntosTop[i] = puntosJugador;
                     break;
                 }
             }
         }
         return topJugadores;
     }
+
 }

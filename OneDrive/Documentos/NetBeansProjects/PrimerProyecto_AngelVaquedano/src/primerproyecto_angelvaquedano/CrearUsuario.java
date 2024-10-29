@@ -7,13 +7,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class CrearUsuario extends javax.swing.JFrame {
-
+        MenuPrincipal mP = new MenuPrincipal();
     Jugador j = new Jugador();
     private SistemaJugadores sJ;
 
     public CrearUsuario() {
         initComponents();
         sJ= new SistemaJugadores();
+        
     }
 
     /**
@@ -36,6 +37,8 @@ public class CrearUsuario extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         img1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        botonCrearCuenta1 = new javax.swing.JToggleButton();
+        botonCrearCuenta = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -92,6 +95,16 @@ public class CrearUsuario extends javax.swing.JFrame {
             }
         });
 
+        botonCrearCuenta1.setBackground(new java.awt.Color(225, 225, 133));
+        botonCrearCuenta1.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
+        botonCrearCuenta1.setForeground(new java.awt.Color(137, 87, 36));
+        botonCrearCuenta1.setText("Volver");
+        botonCrearCuenta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCrearCuenta1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -104,17 +117,20 @@ public class CrearUsuario extends javax.swing.JFrame {
                 .addGap(187, 187, 187))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(204, 204, 204)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(img1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(usernameField)
-                        .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
-                    .addComponent(jLabel3)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonCrearCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(img1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(usernameField)
+                                .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+                            .addComponent(jLabel3)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -141,7 +157,9 @@ public class CrearUsuario extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(61, 61, 61)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addGap(18, 18, 18)
+                .addComponent(botonCrearCuenta1)
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -155,15 +173,35 @@ public class CrearUsuario extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        botonCrearCuenta.setBackground(new java.awt.Color(225, 225, 133));
+        botonCrearCuenta.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
+        botonCrearCuenta.setForeground(new java.awt.Color(137, 87, 36));
+        botonCrearCuenta.setText("Volver");
+        botonCrearCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCrearCuentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(265, 265, 265)
+                    .addComponent(botonCrearCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                    .addGap(266, 266, 266)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(268, 268, 268)
+                    .addComponent(botonCrearCuenta)
+                    .addContainerGap(268, Short.MAX_VALUE)))
         );
 
         pack();
@@ -183,7 +221,8 @@ public class CrearUsuario extends javax.swing.JFrame {
 
             String u = usernameField.getText();
             String p = passwordField.getText();
-            if (sJ.agregarUsuario(u, p)) {
+            
+            if (sJ.agregarUsuario(u, p,0)) {
                 MenuPrincipal mP = new MenuPrincipal();
                 mP.setVisible(true);
                 this.dispose();
@@ -194,6 +233,18 @@ public class CrearUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se ha ingresado una contraseña.");
         }        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void botonCrearCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearCuentaActionPerformed
+        // TODO add your handling code here:
+        mP.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonCrearCuentaActionPerformed
+
+    private void botonCrearCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearCuenta1ActionPerformed
+        // TODO add your handling code here:
+        mP.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonCrearCuenta1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,6 +272,7 @@ public class CrearUsuario extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CrearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -231,6 +283,8 @@ public class CrearUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton botonCrearCuenta;
+    private javax.swing.JToggleButton botonCrearCuenta1;
     private javax.swing.JLabel img1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

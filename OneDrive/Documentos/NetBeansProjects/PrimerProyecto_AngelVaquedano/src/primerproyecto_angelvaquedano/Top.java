@@ -44,7 +44,7 @@ public class Top extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Papyrus", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(137, 87, 36));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Seleccionar  Oponente:");
+        jLabel1.setText("Ranking:");
 
         jScrollPane1.setViewportView(jList1);
 
@@ -132,6 +132,10 @@ public class Top extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Top.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
