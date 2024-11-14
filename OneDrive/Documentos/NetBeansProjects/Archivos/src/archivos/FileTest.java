@@ -20,9 +20,11 @@ public class FileTest {
                     + "\n6- Borrar"
                     + "\n7- Comando DIR"
                     + "\n8- TREE"
-                    + "\n9- Reescribir Archivo"
-                    + "\n10- Añadir a Archivo"
-                    + "\n11- Salir");
+                    + "\n9- Reescribir Archivo (Versión FileWriter)"
+                    + "\n10- Añadir a Archivo (Versión FileWriter)"
+                    + "\n12- Leer Archivo (Versión FileReader)"
+                    + "\n13- Leer Archivo (Versión alternativa - Scanner)"
+                    + "\n14- Salir");
             System.out.print("Escoge una de las opciones: ");
             try {
                 options = lea.nextInt();
@@ -76,15 +78,21 @@ public class FileTest {
                         System.out.print("Contenido para reescribir el archivo: ");
                         String contenidoReescribir = lea.next();
                         mF.reescribirArchivo(contenidoReescribir);
-                        mF.leerArchivo();  
+                        mF.leerArchivoConFileReader();
                         break;
-
                     case 10:
                         System.out.print("Contenido para añadir al archivo: ");
                         String contenidoAñadir = lea.next();
                         mF.añadirInfo(contenidoAñadir);
+                        mF.leerArchivoConFileReader();
                         break;
-                    case 11:
+                    case 12:
+                        mF.leerArchivoConFileReader();
+                        break;
+                    case 13:
+                        mF.leerArchivoConScanner();
+                        break;
+                    case 14:
                         System.out.println("Saliendo del sistema.");
                         break;
                     default:
@@ -99,6 +107,6 @@ public class FileTest {
             } catch (IOException e) {
                 System.out.println("Error: " + e.getMessage());
             }
-        } while (options != 11);
+        } while (options != 14);
     }
 }

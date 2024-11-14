@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package archivos;
 
 import java.io.BufferedReader;
@@ -10,11 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Scanner;
 
-/**
- *
- * @author angel
- */
 public class MyFile {
 
     private File myFile = null;
@@ -71,21 +64,16 @@ public class MyFile {
         if (myFile.isDirectory()) {
             System.out.println("Directorio de: " + myFile.getAbsolutePath());
             System.out.println("");
-            //contadores
             int cfiles = 0, cdirs = 0, totalBytes = 0;
-            //recorrido
             for (File child : myFile.listFiles()) {
                 if (!child.isHidden()) {
-                    //ultima modificacion
                     Date ultimo = new Date(child.lastModified());
-                    System.out.print(ultimo + "\t"); //tabulacion
-
+                    System.out.print(ultimo + "\t");
                     if (child.isDirectory()) {
                         cdirs++;
                         System.out.println("<DIR>\t\t");
                     } else {
                         cfiles++;
-                        //tbytes = totalizado
                         totalBytes += child.length();
                         System.out.println("    \t" + child.length() + "\t");
                     }
@@ -114,9 +102,8 @@ public class MyFile {
 
     boolean addToFolder(String nombreCarpeta, String ruta) throws IOException {
         File carpeta = new File(ruta);
-        if (myFile.isFile() && myFile.isDirectory()) {
+        if (carpeta.isDirectory() && myFile.isFile()) {
             File nuevaCarpeta = new File(carpeta, nombreCarpeta);
-
             return nuevaCarpeta.mkdirs();
         } else {
             System.out.println("No se pudo agregar correctamente");
@@ -140,12 +127,24 @@ public class MyFile {
         }
     }
 
-    void leerArchivo() {
+    void leerArchivoConFileReader() {
         if (myFile.exists() && myFile.isFile()) {
             try (FileReader fR = new FileReader(myFile); BufferedReader bR = new BufferedReader(fR)) {
                 String linea;
                 while ((linea = bR.readLine()) != null) {
                     System.out.println(linea);
+                }
+            } catch (IOException e) {
+                System.out.println("No se ha podido leer el archivo.");
+            }
+        }
+    }
+
+    void leerArchivoConScanner() {
+        if (myFile.exists() && myFile.isFile()) {
+            try (Scanner scanner = new Scanner(myFile)) {
+                while (scanner.hasNextLine()) {
+                    System.out.println(scanner.nextLine());
                 }
             } catch (IOException e) {
                 System.out.println("No se ha podido leer el archivo.");
