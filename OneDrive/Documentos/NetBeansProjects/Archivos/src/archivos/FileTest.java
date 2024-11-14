@@ -76,7 +76,9 @@ public class FileTest {
                         System.out.print("Contenido para reescribir el archivo: ");
                         String contenidoReescribir = lea.next();
                         mF.reescribirArchivo(contenidoReescribir);
+                        mF.leerArchivo();  
                         break;
+
                     case 10:
                         System.out.print("Contenido para añadir al archivo: ");
                         String contenidoAñadir = lea.next();
